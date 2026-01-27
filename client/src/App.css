@@ -1,0 +1,588 @@
+/* =========================================
+   1. GLOBAL RESET & TYPOGRAPHY
+   ========================================= */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #0a0e17; /* Deep Cyberpunk Black */
+  color: #e0e6ed;            /* Soft White Text */
+  font-family: 'Poppins', sans-serif;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0e17;
+}
+::-webkit-scrollbar-thumb {
+  background: #1f293a;
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #00d2ff;
+}
+
+/* =========================================
+   2. NAVBAR
+   ========================================= */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 50px;
+  background: rgba(10, 14, 23, 0.95);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid #1f293a;
+  backdrop-filter: blur(10px);
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+/* Gradient "Welcome" Text */
+.gradient-welcome {
+  background: linear-gradient(to right, #00d2ff, #3a7bd5);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0px 0px 15px rgba(0, 210, 255, 0.2); 
+}
+
+.dot {
+  color: #00d2ff;
+}
+
+.nav-links a {
+  margin-left: 25px;
+  text-decoration: none;
+  color: #a0aab5;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #00d2ff;
+}
+
+.btn-contact {
+  background: #00d2ff;
+  color: #000 !important;
+  padding: 8px 24px;
+  border-radius: 20px;
+  font-weight: 700;
+  box-shadow: 0 0 10px rgba(0, 210, 255, 0.2);
+}
+
+.btn-contact:hover {
+  box-shadow: 0 0 20px rgba(0, 210, 255, 0.6);
+  transform: translateY(-2px);
+}
+
+/* =========================================
+   3. HERO SECTION
+   ========================================= */
+.hero {
+  min-height: 90vh; /* Ensures full height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: radial-gradient(circle at center, #111a2e 0%, #0a0e17 70%);
+  padding: 0 20px;
+  overflow: hidden; /* Keeps 3D elements from overflowing */
+}
+
+/* Hero Text Styling */
+.hero h4 {
+  color: #00d2ff;
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 5px;
+  letter-spacing: 2px;
+}
+
+.hero-name-container {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.hero-subtitle {
+  font-size: 1.5rem;
+  color: #a0aab5;
+  margin-bottom: 20px;
+}
+
+.hero-desc {
+  max-width: 600px;
+  margin-bottom: 35px;
+  color: #8892b0;
+  font-size: 1.1rem;
+}
+
+/* Buttons */
+.hero-buttons {
+  margin-bottom: 30px;
+  display: flex;
+  gap: 15px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 14px 35px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background: transparent;
+  border: 2px solid #00d2ff;
+  color: #00d2ff;
+  box-shadow: 0 0 10px rgba(0, 210, 255, 0.1);
+}
+
+.btn-primary:hover {
+  background: rgba(0, 210, 255, 0.1);
+  box-shadow: 0 0 20px rgba(0, 210, 255, 0.4);
+}
+
+.btn-outline {
+  color: #a0aab5;
+  border: 2px solid #a0aab5;
+}
+
+.btn-outline:hover {
+  color: #fff;
+  border-color: #fff;
+}
+
+.social-icons a {
+  font-size: 1.8rem;
+  color: #a0aab5;
+  margin-right: 20px;
+  transition: 0.3s;
+}
+
+.social-icons a:hover {
+  color: #00d2ff;
+  transform: translateY(-5px);
+}
+
+/* =========================================
+   4. GLITCH TEXT EFFECT (Hero Name)
+   ========================================= */
+.glitch {
+  font-size: 5rem;
+  font-weight: 800;
+  color: #fff;
+  position: relative;
+  display: inline-block;
+  letter-spacing: 2px;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #0a0e17;
+}
+
+.glitch::before {
+  left: 2px;
+  text-shadow: -1px 0 #ff00c1;
+  clip: rect(44px, 450px, 56px, 0);
+  animation: glitch-anim-1 3s infinite linear alternate-reverse;
+}
+
+.glitch::after {
+  left: -2px;
+  text-shadow: -1px 0 #00fff9;
+  clip: rect(44px, 450px, 56px, 0);
+  animation: glitch-anim-2 2.5s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim-1 {
+  0% { clip: rect(30px, 9999px, 10px, 0); }
+  20% { clip: rect(70px, 9999px, 90px, 0); }
+  40% { clip: rect(20px, 9999px, 60px, 0); }
+  60% { clip: rect(80px, 9999px, 10px, 0); }
+  80% { clip: rect(10px, 9999px, 40px, 0); }
+  100% { clip: rect(50px, 9999px, 80px, 0); }
+}
+
+@keyframes glitch-anim-2 {
+  0% { clip: rect(10px, 9999px, 80px, 0); }
+  20% { clip: rect(60px, 9999px, 10px, 0); }
+  40% { clip: rect(90px, 9999px, 30px, 0); }
+  60% { clip: rect(15px, 9999px, 60px, 0); }
+  80% { clip: rect(80px, 9999px, 10px, 0); }
+  100% { clip: rect(40px, 9999px, 90px, 0); }
+}
+
+/* =========================================
+   5. SKILLS SECTION (2x2 Grid)
+   ========================================= */
+.section {
+  padding: 100px 50px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-header {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 50px;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #ccd6f6;
+}
+
+.section-desc {
+  color: #8892b0;
+  font-size: 1.1rem;
+  margin-bottom: 40px;
+}
+
+.highlight {
+  color: #00d2ff;
+}
+
+/* Skills Grid */
+.skills-grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 30px;
+  padding: 0 20px;
+}
+
+/* Skill Card */
+.skill-category-card {
+  background: #0f1522;
+  border: 1px solid #1f293a;
+  padding: 30px;
+  border-radius: 12px;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+  box-shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
+}
+
+.skill-category-card:hover {
+  transform: translateY(-5px);
+  border-color: #00d2ff;
+}
+
+.category-title {
+  color: #00d2ff;
+  font-size: 1.3rem;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #1f293a;
+  padding-bottom: 10px;
+  display: inline-block;
+  width: 100%;
+}
+
+.skill-badges-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.skill-pill {
+  background: #1d2636;
+  color: #e6f1ff;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.skill-pill:hover {
+  background: rgba(0, 210, 255, 0.1);
+  color: #00d2ff;
+  border-color: #00d2ff;
+}
+
+/* =========================================
+   6. PROJECTS SECTION
+   ========================================= */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+}
+
+.project-card {
+  background: #112240;
+  padding: 30px;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+  border: 1px solid #233554;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.project-card:hover {
+  transform: translateY(-10px);
+  border-color: #00d2ff;
+  box-shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
+}
+
+.card-header h3 {
+  color: #e6f1ff;
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+}
+
+.tech-stack {
+  font-size: 0.8rem;
+  color: #00d2ff;
+  font-family: monospace;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.project-card p {
+  color: #a8b2d1;
+  font-size: 0.95rem;
+  margin-bottom: 25px;
+}
+
+.card-links {
+  display: flex;
+  gap: 20px;
+}
+
+.card-links a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.2s;
+}
+
+.card-links a:hover {
+  color: #00d2ff;
+}
+
+/* =========================================
+   7. FOOTER
+   ========================================= */
+.footer {
+  text-align: center;
+  padding: 60px 20px;
+  background: #05080f;
+  border-top: 1px solid #1f293a;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin: 30px 0;
+  color: #8892b0;
+}
+
+.contact-info p {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.copyright {
+  color: #495670;
+  font-size: 0.85rem;
+  margin-top: 40px;
+}
+
+/* =========================================
+   8. LANYARD / 3D CARD STYLES
+   ========================================= */
+/* Container for the 3D Canvas */
+.lanyard-wrapper {
+  position: relative;
+  z-index: 0;
+  width: 100%;
+  height: 100%; /* Ensures it fills the parent container */
+  min-height: 500px; /* Force at least this much height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* THE HTML CONTENT INSIDE THE 3D CARD */
+.card-content-html {
+  width: 140px;
+  height: 200px;
+  /* CRITICAL FIX: Transparent so the 3D Glass Material shows through */
+  background: transparent; 
+  color: white;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 8px;
+  /* Removed border/shadow to let the 3D glass handle the look */
+  font-family: 'Poppins', sans-serif;
+  user-select: none;
+  pointer-events: none; /* Allows 3D interaction */
+}
+
+.card-header {
+  font-size: 10px;
+  color: #00d2ff;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding-bottom: 5px;
+}
+
+.card-body h3 {
+  font-size: 16px;
+  margin: 0;
+  font-weight: 800;
+  text-align: center;
+  background: linear-gradient(to right, #fff, #94a3b8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.card-body p {
+  font-size: 10px;
+  color: #a0aab5;
+  margin: 5px 0 0 0;
+  text-align: center;
+}
+
+.card-footer {
+  font-size: 8px;
+  color: #495670;
+  letter-spacing: 2px;
+}
+
+/* =========================================
+   9. RESPONSIVE DESIGN
+   ========================================= */
+@media (max-width: 900px) {
+  /* Stack Hero Section on Mobile */
+  .hero-grid-layout {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .hero-text-content {
+    text-align: center !important;
+  }
+  
+  .hero-name-container {
+    justify-content: center;
+    align-items: center !important; /* Center text on mobile */
+  }
+  
+  .hero-buttons, .social-icons {
+    justify-content: center !important;
+  }
+
+  .skills-grid-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .glitch {
+    font-size: 3rem;
+  }
+}
+/* =========================================
+   10. MOBILE MENU STYLES
+   ========================================= */
+
+/* Default: Hamburger is hidden on desktop */
+.hamburger {
+  display: none;
+  font-size: 1.8rem;
+  color: #fff;
+  cursor: pointer;
+  z-index: 1001; /* Above the overlay */
+}
+
+/* Mobile Menu Overlay (Hidden by default) */
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 70%;
+  height: 100vh;
+  background: #0f1522;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
+  border-left: 1px solid #1f293a;
+}
+
+.mobile-menu a {
+  color: #a0aab5;
+  font-size: 1.5rem;
+  margin: 20px 0;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.mobile-menu a:hover {
+  color: #00d2ff;
+}
+
+/* RESPONSIVE QUERIES */
+@media (max-width: 900px) {
+  /* Show Hamburger, Hide Desktop Links */
+  .hamburger {
+    display: block;
+  }
+  
+  .nav-links {
+    display: none;
+  }
+  
+  /* Adjust Hero Layout for Mobile */
+  .hero-grid-layout {
+    flex-direction: column-reverse; /* Put Profile Card on top? Or keep column. */
+    flex-direction: column; 
+    gap: 40px;
+  }
+  
+  .hero-visual {
+    height: auto;
+    min-height: 400px;
+  }
+}
