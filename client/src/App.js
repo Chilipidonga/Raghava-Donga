@@ -1,76 +1,76 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react'; // useEffect teesesa
 import './App.css';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaExternalLinkAlt, FaEnvelope, FaMapMarkerAlt, FaPhone, FaBars, FaTimes } from 'react-icons/fa';
 import ProfileCard from './ProfileCard';
 import profilePic from './profile.jpg'; 
-
-// 1. Import Particles Background
 import Particles from './Particles';
-
-// 2. Import Contact Form
 import ContactForm from './ContactForm';
 
 function App() {
-  const [data, setData] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // --- NEW: RESUME DOWNLOAD FUNCTION ---
+  // --- CHANGE 1: DATA NI IKKADE FIX CHESAM (NO FETCH NEEDED) ---
+  const [data] = useState({
+    title: "Full-Stack Developer | MERN Stack Enthusiast",
+    summary: "Passionate developer with experience in building web applications using React, Node.js, and MongoDB. I love solving problems and learning new technologies.",
+    contact: {
+      email: "raghavadonga4@gmail.com",
+      phone: "+91 9999999999", // Nee number ikkada marchu
+      location: "Bhimavaram, India"
+    },
+    links: {
+      github: "https://github.com/Chilipidonga",
+      linkedin: "https://linkedin.com/in/raghava-donga",
+      portfolio: "#"
+    },
+    projects: [
+      {
+        title: "TastyGo Food App",
+        tech: "MERN Stack",
+        desc: "A full-stack food delivery application with cart and order features.",
+      },
+      {
+        title: "Flux Chat App",
+        tech: "Socket.io & React",
+        desc: "Real-time messaging application with instant notifications.",
+      },
+      {
+        title: "Portfolio Website",
+        tech: "React & Framer Motion",
+        desc: "Personal portfolio website with animations and interactive UI.",
+      }
+    ]
+  });
+
   const handleDownloadResume = () => {
     const link = document.createElement('a');
-    link.href = '/resume.pdf'; // 'public' folder lo unna file path
-    link.download = 'Raghava_Donga_Resume.pdf'; // Download ayyaka file name ila vastundi
+    link.href = '/resume.pdf'; 
+    link.download = 'Raghava_Donga_Resume.pdf'; 
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
   };
 
-  // Fetch data from backend
-  useEffect(() => {
-    fetch('http://localhost:5000/api/portfolio')
-      .then(res => res.json())
-      .then(resData => setData(resData))
-      .catch(err => console.error("Error fetching data:", err));
-  }, []);
-
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
-  // Your Skills Data
   const skillCategories = [
     {
       title: "Frontend Development",
-      skills: ["HTML5", "CSS3", "JavaScript", "TypeScript", "React", "Vue.js", "Tailwind CSS", "SASS/SCSS"]
+      skills: ["HTML5", "CSS3", "JavaScript", "React", "Tailwind CSS"]
     },
     {
       title: "Backend Development",
-      skills: ["Node.js", "Express.js", "Python", "Java", "PostgreSQL", "MongoDB", "GraphQL", "REST APIs"]
-    },
-    {
-      title: "DevOps & Cloud",
-      skills: ["Docker", "Kubernetes", "AWS", "Azure", "Jenkins", "GitLab CI"]
-    },
-    {
-      title: "Generative AI & LLM Engineering",
-      skills: [
-        "LangChain",
-        "OpenAI API",
-        "RAG Pipelines",
-        "Hugging Face",
-        "LlamaIndex",
-        "Pinecone",
-        "ChromaDB",
-        "Prompt Engineering",
-        "Streamlit"
-      ]
+      skills: ["Node.js", "Express.js", "MongoDB", "Python"]
     },
     {
       title: "Tools & Technologies",
-      skills: ["Git", "Linux", "Nginx", "Redis", "Prometheus", "VS Code", "Postman", "JIRA"]
+      skills: ["Git", "GitHub", "VS Code", "Postman"]
     }
   ];
 
-  if (!data) return <div className="loading">Loading Portfolio...</div>;
-
+  // Loading check avasaram ledu, data eppudu ready ga untundi!
+  
   return (
     <div className="app-container">
       {/* Navigation Bar */}
@@ -119,10 +119,10 @@ function App() {
         {/* PARTICLES BACKGROUND */}
         <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 }}>
              <Particles
-                 particleCount={300}
+                 particleCount={100} // Mobile kosam count taggincha (Performance)
                  particleSpread={10}
                  speed={0.1}
-                 particleColors={['#ffffff', '#00d2ff']} // White and Cyan particles
+                 particleColors={['#ffffff', '#00d2ff']}
                  moveParticlesOnHover={true}
                  particleHoverFactor={1}
                  alphaParticles={false}
@@ -154,7 +154,7 @@ function App() {
             animate={{ opacity: 1, x: 0 }} 
             transition={{ duration: 0.8 }}
             className="hero-text-content"
-            style={{ flex: 1, textAlign: 'left', minWidth: '350px' }}
+            style={{ flex: 1, textAlign: 'left', minWidth: '300px' }} // Mobile responsive width
           >
             <h4>Hello, I'm</h4>
             
@@ -195,21 +195,17 @@ function App() {
             display: 'flex', 
             justifyContent: 'center', 
             alignItems: 'center',
-            minWidth: '350px', 
-            height: '600px' 
+            minWidth: '300px', 
+            height: 'auto',
+            padding: '20px 0' 
           }}>
-            {/* --- UPDATED PROFILE CARD --- */}
             <ProfileCard
                 name="Raghava Donga"
                 title="Full-Stack AI Developer"
                 handle="raghavadonga4@gmail.com"
                 avatarUrl={profilePic} 
                 status="Open to Work"
-                
-                // IMPORTANT: Button Text Update
                 contactText="Download Resume"
-                
-                // IMPORTANT: Linking our Download Function
                 onContactClick={handleDownloadResume} 
             />
           </div>
@@ -222,7 +218,7 @@ function App() {
         <div className="section-header">
           <h2 className="section-title">Technical <span className="highlight">Skills</span></h2>
           <p className="section-desc">
-            A comprehensive toolkit of modern technologies and frameworks that enable me to build robust, scalable applications.
+            A comprehensive toolkit of modern technologies and frameworks.
           </p>
         </div>
         
@@ -272,14 +268,13 @@ function App() {
         </div>
       </section>
 
-      {/* Contact Section with Form */}
+      {/* Contact Section */}
       <footer className="footer" id="contact">
         <h2>Get In Touch</h2>
         <p className="section-desc" style={{ marginBottom: '40px' }}>
-          Currently looking for new opportunities. Whether you have a question or just want to say hi, I'll try my best to get back to you!
+          I'll try my best to get back to you!
         </p>
 
-        {/* The New Form */}
         <ContactForm />
 
         <div className="contact-info">
@@ -287,7 +282,7 @@ function App() {
           <p><FaPhone /> {data.contact.phone}</p>
           <p><FaMapMarkerAlt /> {data.contact.location}</p>
         </div>
-        <p className="copyright">© 2025 Raghava Donga. Made with React & MongoDB.</p>
+        <p className="copyright">© 2025 Raghava Donga.</p>
       </footer>
     </div>
   );
