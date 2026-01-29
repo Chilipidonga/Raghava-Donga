@@ -1,4 +1,4 @@
-import React, { useState } from 'react'; // useEffect teesesa
+import React, { useState } from 'react';
 import './App.css';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaExternalLinkAlt, FaEnvelope, FaMapMarkerAlt, FaPhone, FaBars, FaTimes } from 'react-icons/fa';
@@ -10,13 +10,14 @@ import ContactForm from './ContactForm';
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // --- CHANGE 1: DATA NI IKKADE FIX CHESAM (NO FETCH NEEDED) ---
+  // --- FIX: DATA NI HARDCODE CHESAM (Mobile lo Loading Problem Ravaddhu ani) ---
+  // Nee screenshot prakaram Content Text marchanu chudu:
   const [data] = useState({
-    title: "Full-Stack Developer | MERN Stack Enthusiast",
-    summary: "Passionate developer with experience in building web applications using React, Node.js, and MongoDB. I love solving problems and learning new technologies.",
+    title: "Full Stack AI Developer | Gen AI Engineer | MERN Stack & Python",
+    summary: "Full Stack AI Developer building the intersection of web and AI. Expert in MERN stack, Python, and Generative AI integrations. Turning code into intelligent, user-centric solutions.",
     contact: {
       email: "raghavadonga4@gmail.com",
-      phone: "+91 9999999999", // Nee number ikkada marchu
+      phone: "+91 9502570094", // Nee phone number ikkada correct ga edit chey
       location: "Bhimavaram, India"
     },
     links: {
@@ -24,21 +25,22 @@ function App() {
       linkedin: "https://linkedin.com/in/raghava-donga",
       portfolio: "#"
     },
+    // Projects Data (Database nundi badulu ikkada pedtunnam)
     projects: [
       {
         title: "TastyGo Food App",
-        tech: "MERN Stack",
-        desc: "A full-stack food delivery application with cart and order features.",
+        tech: "MERN Stack, Redux, Stripe",
+        desc: "A full-stack food delivery application with cart, secure payments, and order management features.",
       },
       {
         title: "Flux Chat App",
-        tech: "Socket.io & React",
-        desc: "Real-time messaging application with instant notifications.",
+        tech: "Socket.io, React, Node.js",
+        desc: "Real-time messaging application with instant notifications, group chats, and secure login.",
       },
       {
-        title: "Portfolio Website",
-        tech: "React & Framer Motion",
-        desc: "Personal portfolio website with animations and interactive UI.",
+        title: "SAPAS (Smart Analytics)",
+        tech: "Python, Pandas, AI",
+        desc: "Smart Academic Performance Analytics System for analyzing student performance using data analytics.",
       }
     ]
   });
@@ -54,23 +56,40 @@ function App() {
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
+  // --- SKILLS DATA (Nuvvu pampina ORIGINAL List As-It-Is) ---
   const skillCategories = [
     {
       title: "Frontend Development",
-      skills: ["HTML5", "CSS3", "JavaScript", "React", "Tailwind CSS"]
+      skills: ["HTML5", "CSS3", "JavaScript", "TypeScript", "React", "Vue.js", "Tailwind CSS", "SASS/SCSS"]
     },
     {
       title: "Backend Development",
-      skills: ["Node.js", "Express.js", "MongoDB", "Python"]
+      skills: ["Node.js", "Express.js", "Python", "Java", "PostgreSQL", "MongoDB", "GraphQL", "REST APIs"]
+    },
+    {
+      title: "DevOps & Cloud",
+      skills: ["Docker", "Kubernetes", "AWS", "Azure", "Jenkins", "GitLab CI"]
+    },
+    {
+      title: "Generative AI & LLM Engineering",
+      skills: [
+        "LangChain",
+        "OpenAI API",
+        "RAG Pipelines",
+        "Hugging Face",
+        "LlamaIndex",
+        "Pinecone",
+        "ChromaDB",
+        "Prompt Engineering",
+        "Streamlit"
+      ]
     },
     {
       title: "Tools & Technologies",
-      skills: ["Git", "GitHub", "VS Code", "Postman"]
+      skills: ["Git", "Linux", "Nginx", "Redis", "Prometheus", "VS Code", "Postman", "JIRA"]
     }
   ];
 
-  // Loading check avasaram ledu, data eppudu ready ga untundi!
-  
   return (
     <div className="app-container">
       {/* Navigation Bar */}
@@ -119,7 +138,7 @@ function App() {
         {/* PARTICLES BACKGROUND */}
         <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 }}>
              <Particles
-                 particleCount={100} // Mobile kosam count taggincha (Performance)
+                 particleCount={100} 
                  particleSpread={10}
                  speed={0.1}
                  particleColors={['#ffffff', '#00d2ff']}
@@ -154,7 +173,7 @@ function App() {
             animate={{ opacity: 1, x: 0 }} 
             transition={{ duration: 0.8 }}
             className="hero-text-content"
-            style={{ flex: 1, textAlign: 'left', minWidth: '300px' }} // Mobile responsive width
+            style={{ flex: 1, textAlign: 'left', minWidth: '300px' }} 
           >
             <h4>Hello, I'm</h4>
             
@@ -202,7 +221,7 @@ function App() {
             <ProfileCard
                 name="Raghava Donga"
                 title="Full-Stack AI Developer"
-                handle="raghavadonga4@gmail.com"
+                handle={data.contact.email}
                 avatarUrl={profilePic} 
                 status="Open to Work"
                 contactText="Download Resume"
@@ -218,7 +237,7 @@ function App() {
         <div className="section-header">
           <h2 className="section-title">Technical <span className="highlight">Skills</span></h2>
           <p className="section-desc">
-            A comprehensive toolkit of modern technologies and frameworks.
+            A comprehensive toolkit of modern technologies, GenAI, and frameworks.
           </p>
         </div>
         
@@ -272,7 +291,7 @@ function App() {
       <footer className="footer" id="contact">
         <h2>Get In Touch</h2>
         <p className="section-desc" style={{ marginBottom: '40px' }}>
-          I'll try my best to get back to you!
+          Currently looking for new opportunities. Whether you have a question or just want to say hi, I'll try my best to get back to you!
         </p>
 
         <ContactForm />
@@ -282,7 +301,7 @@ function App() {
           <p><FaPhone /> {data.contact.phone}</p>
           <p><FaMapMarkerAlt /> {data.contact.location}</p>
         </div>
-        <p className="copyright">© 2025 Raghava Donga.</p>
+        <p className="copyright">© 2025 Raghava Donga. Made with React & MongoDB.</p>
       </footer>
     </div>
   );
