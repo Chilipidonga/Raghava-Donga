@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
 import { motion } from 'framer-motion';
-import './ContactForm.css'; // We will create this next
+import './ContactForm.css';
 
 const ContactForm = () => {
   const form = useRef();
@@ -11,13 +11,19 @@ const ContactForm = () => {
     e.preventDefault();
     setStatus('sending');
 
-    // REPLACE THESE WITH YOUR ACTUAL EMAILJS KEYS LATER
-    // For now, it will just simulate sending
-    emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', form.current, 'YOUR_PUBLIC_KEY')
+    // IMPORTANT: Ee values manam Vercel Settings lo add cheyali
+    emailjs.sendForm(
+      process.env.REACT_APP_EMAILJS_SERVICE_ID,
+      process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
+      form.current,
+      process.env.REACT_APP_EMAILJS_PUBLIC_KEY
+    )
       .then((result) => {
           console.log(result.text);
           setStatus('success');
           form.current.reset();
+          // Success ayyaka message konchem sepu undi potundi
+          setTimeout(() => setStatus(''), 5000);
       }, (error) => {
           console.log(error.text);
           setStatus('error');
@@ -51,7 +57,7 @@ const ContactForm = () => {
             {status === 'sending' ? 'Sending...' : 'Send Message'}
           </button>
 
-          {status === 'success' && <p className="msg-success">Message sent successfully!</p>}
+          {status === 'success' && <p className="msg-success">Message sent successfully! 🚀</p>}
           {status === 'error' && <p className="msg-error">Failed to send. Please try again.</p>}
         </form>
       </motion.div>
