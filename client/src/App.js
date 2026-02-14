@@ -17,13 +17,13 @@ function App() {
     summary: "Full Stack AI Developer building the intersection of web and AI. Expert in MERN stack, Python, and Generative AI integrations. Turning code into intelligent, user-centric solutions.",
     contact: {
       email: "raghavadonga4@gmail.com",
-      phone: "+91 9502570094", // Nee phone number ikkada correct ga edit chey
-      location: "Bhimavaram, India"
+      phone: "+91 9059088334", // Nee phone number ikkada correct ga edit chey
+      location: "Narsapur, India"
     },
     links: {
       github: "https://github.com/Chilipidonga",
       linkedin: "https://linkedin.com/in/raghava-donga",
-      portfolio: "#"
+      portfolio: "raghava-donga.vercel.app"
     },
     // Projects Data (Database nundi badulu ikkada pedtunnam)
     projects: [
@@ -64,7 +64,7 @@ function App() {
     },
     {
       title: "Backend Development",
-      skills: ["Node.js", "Express.js", "Python", "Java", "PostgreSQL", "MongoDB", "GraphQL", "REST APIs"]
+      skills: ["Node.js", "Express.js", "Python", "Java", "PostgreSQL", "MongoDB", "REST APIs"]
     },
     {
       title: "DevOps & Cloud",
@@ -86,7 +86,7 @@ function App() {
     },
     {
       title: "Tools & Technologies",
-      skills: ["Git", "Linux", "Nginx", "Redis", "Prometheus", "VS Code", "Postman", "JIRA"]
+      skills: ["Git", "Linux", "Nginx", "Redis", "Prometheus", "VS Code", "Postman"]
     }
   ];
 
@@ -301,7 +301,7 @@ function App() {
           <p><FaPhone /> {data.contact.phone}</p>
           <p><FaMapMarkerAlt /> {data.contact.location}</p>
         </div>
-        <p className="copyright">© 2025 Raghava Donga. Made with React & MongoDB.</p>
+        <p className="copyright">© 2025 Raghava Donga.</p>
       </footer>
     </div>
   );
